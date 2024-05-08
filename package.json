@@ -1,0 +1,36 @@
+{
+	"name": "express-api-ts-template",
+	"version": "1.0.0",
+	"description": "A template for creating an Express API with TypeScript",
+	"license": "MIT",
+	"scripts": {
+		"check-env": "tsup src/config/env/index.ts && node dist/index.js",
+		"dev": "pnpm check-env && tsup --watch --onSuccess 'pnpm start-only'",
+		"type-check": "tsc --noEmit -p .",
+		"build-only": "tsup",
+		"clean": "rm -rf dist",
+		"lint": "pnpm biome check --apply ./src/",
+		"build": "pnpm check-env && pnpm lint && pnpm type-check && pnpm build-only",
+		"start-only": "NODE_ENV=production node dist/index.js",
+		"start": "pnpm build & pnpm start-only",
+		"test": "vitest"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.7.1",
+		"@types/cors": "^2.8.17",
+		"@types/express": "^4.17.21",
+		"@types/morgan": "^1.9.9",
+		"@types/node": "^20.12.7",
+		"nodemon": "^3.1.0",
+		"tsup": "^8.0.2",
+		"typescript": "^5.4.5",
+		"vitest": "^1.5.3"
+	},
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^16.4.5",
+		"express": "^4.19.2",
+		"morgan": "^1.10.0",
+		"zod": "^3.23.5"
+	}
+}
